@@ -9,12 +9,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "concurrently \"npm run server\" \"npm run dev\"",
-    "server": "node src/server.js"  
+    "server": "node src/server.js"
   },
   "dependencies": {
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@mui/material": "^6.1.9",
+    "@vitejs/plugin-react": "^4.3.4",
     "antd": "^5.22.2",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.6",

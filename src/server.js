@@ -14,23 +14,17 @@ app.use(cors({
 app.use(express.json());
 
 // Endpoint lấy thông tin chi tiết của sinh viên
-app.get('/api/students/:studentId', (req, res) => {
-  const { studentId } = req.params;
+app.get('/api/students/:user_id', (req, res) => {
+  const { user_id } = req.params;
   const query = `
     SELECT 
-      student_id, enroll_id, name, department, gpa, status,
-      normal_click_about, normal_click_courseware, normal_click_forum, normal_click_progress,
-      normal_click_info, normal_close_courseware, normal_close_forum, normal_create_comment,
-      normal_create_thread, normal_delete_comment, normal_delete_thread, normal_load_video,
-      normal_pause_video, normal_play_video, normal_problem_check, normal_problem_check_correct,
-      normal_problem_check_incorrect, normal_problem_get, normal_problem_save, normal_reset_problem,
-      normal_seek_video, normal_stop_video, sessions, avg_secs
-    FROM Students
-    WHERE student_id = ?
+        *
+    FROM students
+    WHERE user_id = ?
   `;
 
   // Thực hiện truy vấn MySQL
-  db.execute(query, [studentId], (err, results) => {
+  db.execute(query, [user_id], (err, results) => {
     if (err) {
       console.error("Error fetching student details from database", err);
       res.status(500).json({ error: "Failed to fetch student details" });
@@ -46,7 +40,7 @@ app.get('/api/students/:studentId', (req, res) => {
 
 // Định nghĩa một endpoint để lấy dữ liệu từ bảng Students
 app.get('/api/students', (req, res) => {
-  const query = "SELECT * FROM Students";
+  const query = "SELECT * FROM students";
   db.query(query, (err, results) => {
     if (err) {
       res.status(500).json({ error: 'Failed to fetch students' });
